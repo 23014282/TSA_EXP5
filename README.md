@@ -1,6 +1,9 @@
 # Ex.No: 05  IMPLEMENTATION OF TIME SERIES ANALYSIS AND DECOMPOSITION
-### Date: 
 
+### Name: A.JEEVITH
+
+
+### Date: 30/09/2025
 
 ### AIM:
 To Illustrates how to perform time series analysis and decomposition on the monthly average temperature of a city/country and for airline passengers.
@@ -14,38 +17,48 @@ To Illustrates how to perform time series analysis and decomposition on the mont
 
 ### PROGRAM:
 
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from statsmodels.tsa.seasonal import seasonal_decompose
+import pandas as pd
 
+data = pd.read_csv('Crypto Data Since 2015.csv',parse_dates=['Date'],index_col='Date')
 
+decomposition = seasonal_decompose(data['Bitcoin (USD)'], model='additive',period=12)
 
+plt.figure(figsize=(12, 12))
+decomposition.plot()
 
+plt.subplot(411)
+plt.plot(data['Bitcoin (USD)'], label='Monthly Rate')
+plt.legend(loc='upper left')
+plt.title('Monthly Rate')
 
+plt.subplot(412)
+plt.plot(decomposition.trend, label='Trend', color='orange')
+plt.legend(loc='upper left')
+plt.title('Linear Trend Plot')
 
+plt.subplot(413)
+plt.plot(decomposition.seasonal, label='Seasonal', color='green')
+plt.legend(loc='upper left')
+plt.title('Seasonality Plot')
 
+plt.subplot(414)
+plt.plot(decomposition.resid, label='Residual', color='red')
+plt.legend(loc='upper left')
+plt.title('Residual Plot')
 
+plt.tight_layout()
+plt.show()
 
-
-
-
-
-
-
+```
 
 ### OUTPUT:
-FIRST FIVE ROWS:
+Original Time series data, Trend Plot, Seasonality plot, Resuidal Plot:
 
-
-
-PLOTTING THE DATA:
-
-SEASONAL PLOT REPRESENTATION :
-
-
-
-TREND PLOT REPRESENTATION :
-
-OVERAL REPRESENTATION:
-
-
+<img width="629" height="470" alt="image" src="https://github.com/user-attachments/assets/a3dd1125-1add-4dee-b5bb-29841d7a6432" />
 
 ### RESULT:
 Thus we have created the python code for the time series analysis and decomposition.
